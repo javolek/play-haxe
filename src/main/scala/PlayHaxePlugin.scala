@@ -11,10 +11,11 @@ object PlayHaxePlugin extends Plugin {
     (_ ** "*.hx"),
     haxeEntryPoints,
     { (name, min) => name.replace(".hx", if (min) ".min.js" else ".js") },
-    { (haxeFile, options) => com.github.hexx.HaxeCompiler.compile(haxeFile, options) },
+    { (haxeFile, options) => 
+        com.github.hexx.HaxeCompiler.compile(haxeFile, options) },
     haxeOptions
   )
-
+  
   override val settings = Seq(
     haxeEntryPoints <<= (sourceDirectory in Compile)(_ / "assets" ** "*.hx"),
     haxeOptions := Seq.empty[String],
